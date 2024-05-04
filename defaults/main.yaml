@@ -1,0 +1,48 @@
+---
+APP_PYTHON: "{{ '/usr/bin/python' if lookup('file', '/usr/bin/python', errors='ignore') else '/usr/bin/python3' }}"
+APP_DEPENDENCIES_REDHAT:
+  - gnome-common
+  - intltool
+  - gtk-doc
+  - libnotify-devel
+  - git
+  - gtk3-devel
+  - gstreamer1-devel
+  - gstreamer1-plugins-base-tools
+  - gstreamer1-doc
+  - gstreamer1-plugins-base-devel
+  - gstreamer1-plugins-good
+  - gstreamer1-plugins-good-extras
+  - gstreamer1-plugins-ugly
+  - gstreamer1-plugins-bad-free
+  - gstreamer1-plugins-bad-free-devel
+  - gstreamer1-plugins-bad-free-extras
+  - libxml2-devel
+  - libcdr-devel
+  - dvd+rw-tools
+  - cairo-devel
+  - libcanberra-devel
+  - totem
+  - tracker-devel
+  - libburn-devel
+  - libisofs-devel
+  - vcdimager-devel
+APP_DEPENDENCIES: "{{ APP_DEPENDENCIES_REDHAT if ansible_distribution_file_variety == 'RedHat' else APP_DEPENDENCIES_REDHAT }}"
+APP_NAME: brasero
+APP_DISPLAY_NAME: Brasero
+APP_GENERIC_NAME: A DVD Burner
+APP_COMMENT: Same thing
+APP_USER: "{{ lookup('env', 'USER') }}"
+APP_GROUP: "{{ APP_USER }}"
+APP_PREFIX: "{{ lookup('env', 'HOME') }}/.local"
+APP_SRC: "{{ APP_PREFIX }}/src/{{ APP_NAME  }}"
+APP_SHARE: "{{ APP_PREFIX }}/share/{{ APP_NAME  }}"
+APP_REPO: https://github.com/GNOME/brasero.git
+APP_TAG: 3.12.3
+APP_DESKTOP: "{{ lookup('env', 'HOME') }}/.local/share/applications/{{ APP_NAME }}.desktop"
+APP_README: "{{ APP_SRC }}/README"
+APP_ICON: "{{ APP_SRC }}/data/icons/hicolor_apps_256x256_brasero.png"
+APP_EXEC: "{{ APP_PREFIX }}/bin/brasero"
+APP_KEYWORDS: "videos;movies;"
+APP_CATEGORIES: "Utility;Accessibility;"
+
